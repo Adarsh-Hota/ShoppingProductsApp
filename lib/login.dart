@@ -23,50 +23,56 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 Image.asset('assets/diamond.png'),
                 const SizedBox(height: 16.0),
-                const Text('SHRINE'),
+                Text(
+                  'SHRINE',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
               ],
             ),
             const SizedBox(height: 120.0),
-            // TODO: Remove filled: true values (103)
-
             TextField(
               controller: _usernameController,
               decoration: const InputDecoration(
-                filled: true,
                 labelText: 'Username',
               ),
             ),
-
             const SizedBox(
               height: 12.0,
             ),
-
             TextField(
               controller: _passwordController,
               decoration: const InputDecoration(
-                filled: true,
                 labelText: 'Password',
               ),
               obscureText: true,
             ),
-
             OverflowBar(
               alignment: MainAxisAlignment.end,
-              // TODO: Add a beveled rectangular border to CANCEL (103)
               children: <Widget>[
-                // TODO: Add buttons (101)
                 TextButton(
                   child: const Text('CANCEL'),
                   onPressed: () {
                     _usernameController.clear();
                     _passwordController.clear();
                   },
+                  style: TextButton.styleFrom(
+                    primary: Theme.of(context).colorScheme.secondary,
+                    shape: const BeveledRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                    ),
+                  ),
                 ),
                 ElevatedButton(
                   child: const Text('NEXT'),
                   onPressed: () {
                     Navigator.pop(context);
                   },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 8.0,
+                    shape: const BeveledRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                    ),
+                  ),
                 ),
               ],
             ),
