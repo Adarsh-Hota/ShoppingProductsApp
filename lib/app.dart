@@ -3,6 +3,8 @@ import 'home.dart';
 import 'login.dart';
 import 'colors.dart';
 import 'supplemental/cut_corners_border.dart';
+import 'layer_widgets/backdrop.dart';
+import 'model/product.dart';
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
@@ -71,8 +73,16 @@ class ShrineApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
-        // TODO: Change to a Backdrop with a HomePage frontLayer (104)
-        '/': (BuildContext context) => const HomePage(),
+        '/': (BuildContext context) => Backdrop(
+              // TODO: Make currentCategory field take _currentCategory (104)
+              currentCategory: Category.all,
+              // TODO: Pass _currentCategory for frontLayer (104)
+              frontLayer: const HomePage(),
+              // TODO: Change backLayer field value to CategoryMenuPage (104)
+              backLayer: Container(color: kShrinePink100),
+              frontTitle: const Text('SHRINE'),
+              backTitle: const Text('MENU'),
+            ),
         // TODO: Make currentCategory field take _currentCategory (104)
         // TODO: Pass _currentCategory for frontLayer (104)
         // TODO: Change backLayer field value to CategoryMenuPage (104)
@@ -82,6 +92,3 @@ class ShrineApp extends StatelessWidget {
     );
   }
 }
-
-// TODO: Build a Shrine Theme (103)
-// TODO: Build a Shrine Text Theme (103)
