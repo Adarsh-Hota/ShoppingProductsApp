@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'model/product.dart';
-import 'model/products_repository.dart';
+import '../model/product.dart';
+import '../model/products_repository.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final Category category;
+
+  const HomePage({this.category = Category.all, Key? key}) : super(key: key);
 
   List<Card> _buildGridCards(BuildContext context) {
-    List<Product> products = ProductsRepository.loadProducts(Category.all);
+    List<Product> products = ProductsRepository.loadProducts(category);
 
     if (products.isEmpty) {
       return const <Card>[];
